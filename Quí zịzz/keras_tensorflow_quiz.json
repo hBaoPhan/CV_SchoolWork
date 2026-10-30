@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "question": "Chiến lược nào phù hợp cho Research và Debugging?",
+    "options": {
+      "a": "Best Model Only",
+      "b": "Chỉ lưu epoch cuối",
+      "c": "Không lưu checkpoint",
+      "d": "Incremental Improvements - lưu tất cả improvements"
+    },
+    "answer": "d"
+  },
+  {
+    "id": 2,
+    "question": "Chiến lược nào phù hợp cho Production deployment?",
+    "options": {
+      "a": "Lưu mỗi 10 epochs",
+      "b": "Lưu mọi epoch",
+      "c": "Không lưu checkpoint",
+      "d": "Best Model Only - chỉ giữ 1 file model tốt nhất"
+    },
+    "answer": "d"
+  },
+  {
+    "id": 3,
+    "question": "Model Checkpointing là gì?",
+    "options": {
+      "a": "Kỹ thuật kiểm tra lỗi trong model",
+      "b": "Kỹ thuật tối ưu hóa learning rate",
+      "c": "Kỹ thuật tăng tốc độ training",
+      "d": "Kỹ thuật lưu trữ trạng thái của model tại các thời điểm cụ thể trong training"
+    },
+    "answer": "d"
+  },
+  {
+    "id": 4,
+    "question": "Callback trong Keras/TensorFlow là gì?",
+    "options": {
+      "a": "Một object được gọi tại các điểm cụ thể trong training để thực hiện hành động tùy chỉnh",
+      "b": "Một layer đặc biệt trong neural network",
+      "c": "Một hàm được gọi sau khi training kết thúc",
+      "d": "Một phương pháp debug code"
+    },
+    "answer": "a"
+  },
+  {
+    "id": 5,
+    "question": "Khi kết hợp checkpoint với EarlyStopping, nên set parameter nào?",
+    "options": {
+      "a": "Không cần set gì",
+      "b": "restore_best_weights=False",
+      "c": "save_best_only=False",
+      "d": "restore_best_weights=True"
+    },
+    "answer": "d"
+  },
+  {
+    "id": 6,
+    "question": "Filepath model-{epoch:03d}-{val_loss:.4f}.h5 sẽ tạo file tên như thế nào ở epoch 25 với val_loss=0.3421?",
+    "options": {
+      "a": "model-025-0.34.h5",
+      "b": "model-025-0.3421.h5",
+      "c": "model-25-0.34.h5",
+      "d": "model-25-0.3421.h5"
+    },
+    "answer": "b"
+  },
+  {
+    "id": 7,
+    "question": "mode=auto trong ModelCheckpoint có tác dụng gì?",
+    "options": {
+      "a": "Tự động detect mode phù hợp (min/max) dựa trên metric name",
+      "b": "Tự động tạo thư mục",
+      "c": "Tự động lưu model",
+      "d": "Tự động chọn metric tốt nhất"
+    },
+    "answer": "a"
+  },
+  {
+    "id": 8,
+    "question": "Khi nào validation loss được coi là cải thiện?",
+    "options": {
+      "a": "Khi tăng lên",
+      "b": "Khi bằng 0",
+      "c": "Khi giảm xuống",
+      "d": "Khi không thay đổi"
+    },
+    "answer": "c"
+  },
+  {
+    "id": 9,
+    "question": "Tại sao nên monitor validation metrics thay vì training metrics?",
+    "options": {
+      "a": "Validation metrics luôn cao hơn",
+      "b": "Validation metrics tính toán nhanh hơn",
+      "c": "Validation metrics đo performance trên unseen data, phản ánh khả năng generalize tốt hơn",
+      "d": "Training metrics không chính xác"
+    },
+    "answer": "c"
+  },
+  {
+    "id": 10,
+    "question": "Có bao nhiêu loại Checkpointing chính được đề cập?",
+    "options": {
+      "a": "3 loại",
+      "b": "5 loại",
+      "c": "2 loại",
+      "d": "4 loại"
+    },
+    "answer": "c"
+  },
+  {
+    "id": 11,
+    "question": "Khi lưu full model (không phải weights only), những gì được lưu?",
+    "options": {
+      "a": "Architecture, weights, optimizer state, và compilation info",
+      "b": "Chỉ có optimizer state",
+      "c": "Chỉ có architecture và weights",
+      "d": "Chỉ có weights"
+    },
+    "answer": "a"
+  },
+  {
+    "id": 12,
+    "question": "Khi nào NÊN sử dụng Checkpointing?",
+    "options": {
+      "a": "Testing code với toy dataset",
+      "b": "Training mất nhiều thời gian (>1 giờ), dataset lớn",
+      "c": "Quick prototyping, training <5 phút",
+      "d": "Chỉ khi có yêu cầu từ giáo viên"
+    },
+    "answer": "b"
+  },
+  {
+    "id": 13,
+    "question": "Metric nào sau đây là regression metric?",
+    "options": {
+      "a": "val_accuracy",
+      "b": "val_precision",
+      "c": "val_f1_score",
+      "d": "val_mae (Mean Absolute Error)"
+    },
+    "answer": "d"
+  },
+  {
+    "id": 14,
+    "question": "Định dạng nào là chuẩn của TensorFlow và tối ưu cho TensorFlow Serving?",
+    "options": {
+      "a": "SavedModel format",
+      "b": "JSON",
+      "c": "Pickle (.pkl)",
+      "d": "HDF5 (.h5)"
+    },
+    "answer": "a"
+  },
+  {
+    "id": 15,
+    "question": "Để resume training từ checkpoint, parameter nào cần thiết trong model.fit()?",
+    "options": {
+      "a": "start_epoch=50",
+      "b": "initial_epoch=50",
+      "c": "continue_training=True",
+      "d": "resume=True"
+    },
+    "answer": "b"
+  }
+]

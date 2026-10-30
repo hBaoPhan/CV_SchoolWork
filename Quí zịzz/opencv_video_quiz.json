@@ -1,0 +1,301 @@
+{
+  "quiz": [
+    {
+      "id": 4,
+      "question": "Class nào trong OpenCV được sử dụng để đọc video?",
+      "options": {
+        "a": "cv2.VideoPlayer",
+        "b": "cv2.VideoLoader",
+        "c": "cv2.VideoCapture",
+        "d": "cv2.VideoReader"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 5,
+      "question": "Trong Google Colab, max_frames thường được giới hạn để làm gì?",
+      "options": {
+        "a": "Tăng FPS",
+        "b": "Cải thiện chất lượng video",
+        "c": "Tăng tốc độ xử lý",
+        "d": "Tiết kiệm bộ nhớ và tránh quá tải"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 6,
+      "question": "Google Colab không hỗ trợ tính năng gì của OpenCV?",
+      "options": {
+        "a": "Xử lý ảnh",
+        "b": "Đọc video",
+        "c": "GUI (cv2.imshow)",
+        "d": "Ghi video"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 7,
+      "question": "Một frame trong video HD 1920x1080 chứa bao nhiêu pixel?",
+      "options": {
+        "a": "2,073,600 pixel",
+        "b": "3,840,000 pixel",
+        "c": "1,920,000 pixel",
+        "d": "1,080,000 pixel"
+      },
+      "answer": "a"
+    },
+    {
+      "id": 8,
+      "question": "Trong cv2.putText(), tham số thickness đại diện cho gì?",
+      "options": {
+        "a": "Vị trí text",
+        "b": "Độ dày nét chữ",
+        "c": "Màu chữ",
+        "d": "Kích thước font"
+      },
+      "answer": "b"
+    },
+    {
+      "id": 9,
+      "question": "FPS tiêu chuẩn của điện ảnh là bao nhiêu?",
+      "options": {
+        "a": "30 FPS",
+        "b": "60 FPS",
+        "c": "24 FPS",
+        "d": "120 FPS"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 10,
+      "question": "Codec video phổ biến nhất hiện nay là gì?",
+      "options": {
+        "a": "MPEG-2",
+        "b": "AV1",
+        "c": "H.264/AVC",
+        "d": "VP9"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 11,
+      "question": "Thuộc tính nào lấy chiều rộng của video?",
+      "options": {
+        "a": "cv2.CAP_PROP_WIDTH",
+        "b": "cv2.GET_WIDTH",
+        "c": "cv2.VIDEO_WIDTH",
+        "d": "cv2.CAP_PROP_FRAME_WIDTH"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 12,
+      "question": "Phương thức nào được sử dụng để giải phóng tài nguyên video?",
+      "options": {
+        "a": "video.release()",
+        "b": "video.close()",
+        "c": "video.destroy()",
+        "d": "video.free()"
+      },
+      "answer": "a"
+    },
+    {
+      "id": 13,
+      "question": "FPS là viết tắt của từ gì?",
+      "options": {
+        "a": "File Per Second",
+        "b": "Format Processing System",
+        "c": "Fast Photo Stream",
+        "d": "Frames Per Second"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 14,
+      "question": "Hàm time.time() trả về giá trị gì?",
+      "options": {
+        "a": "Số giây từ epoch (1/1/1970)",
+        "b": "Giờ:phút:giây",
+        "c": "Ngày/tháng/năm",
+        "d": "Thời gian hiện tại dạng chuỗi"
+      },
+      "answer": "a"
+    },
+    {
+      "id": 15,
+      "question": "Công thức tính thời lượng video là gì?",
+      "options": {
+        "a": "FPS - Tổng số frame",
+        "b": "Tổng số frame / FPS",
+        "c": "Tổng số frame × FPS",
+        "d": "FPS / Tổng số frame"
+      },
+      "answer": "b"
+    },
+    {
+      "id": 16,
+      "question": "Thuộc tính nào lấy tổng số frame của video?",
+      "options": {
+        "a": "cv2.CAP_PROP_TOTAL_FRAMES",
+        "b": "cv2.VIDEO_FRAME_COUNT",
+        "c": "cv2.CAP_PROP_FRAME_COUNT",
+        "d": "cv2.GET_FRAME_COUNT"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 17,
+      "question": "Đường dẫn mặc định của Google Drive sau khi mount là gì?",
+      "options": {
+        "a": "/drive/MyDrive",
+        "b": "/content/drive/MyDrive",
+        "c": "/content/MyDrive",
+        "d": "/google/drive/MyDrive"
+      },
+      "answer": "b"
+    },
+    {
+      "id": 18,
+      "question": "Video là gì?",
+      "options": {
+        "a": "Một loại định dạng ảnh tĩnh",
+        "b": "Một file chứa dữ liệu văn bản",
+        "c": "Một tập hợp các file âm thanh",
+        "d": "Một chuỗi các hình ảnh tĩnh (frame) hiển thị liên tiếp"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 19,
+      "question": "Giá trị nào đại diện cho màu trắng trong hệ màu BGR?",
+      "options": {
+        "a": "(0, 255, 0)",
+        "b": "(255, 0, 0)",
+        "c": "(255, 255, 255)",
+        "d": "(0, 0, 0)"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 20,
+      "question": "Thư viện nào được sử dụng thay thế để hiển thị video trên Google Colab?",
+      "options": {
+        "a": "plotly",
+        "b": "PIL",
+        "c": "seaborn",
+        "d": "matplotlib"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 21,
+      "question": "Hàm nào được sử dụng để xóa output cũ khi hiển thị video trên Colab?",
+      "options": {
+        "a": "clear_display()",
+        "b": "delete_output()",
+        "c": "clear_output()",
+        "d": "reset_output()"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 22,
+      "question": "Trong hệ màu BGR của OpenCV, giá trị (0, 0, 255) đại diện cho màu gì?",
+      "options": {
+        "a": "Màu xanh dương",
+        "b": "Màu đỏ",
+        "c": "Màu trắng",
+        "d": "Màu xanh lá"
+      },
+      "answer": "b"
+    },
+    {
+      "id": 23,
+      "question": "Khi ret=False trong video.read(), điều này có nghĩa là gì?",
+      "options": {
+        "a": "Video đang phát bình thường",
+        "b": "Frame hiện tại bị lỗi nhưng có thể tiếp tục",
+        "c": "Cần tăng FPS",
+        "d": "Đã đọc hết video hoặc gặp lỗi"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 24,
+      "question": "Khi gọi video.read(), giá trị trả về là gì?",
+      "options": {
+        "a": "Chỉ ret",
+        "b": "Chỉ frame",
+        "c": "ret và frame",
+        "d": "frame và fps"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 25,
+      "question": "Hàm cv2.putText() được sử dụng để làm gì?",
+      "options": {
+        "a": "Chuyển đổi text thành ảnh",
+        "b": "Xóa text khỏi ảnh",
+        "c": "Ghi text lên ảnh/frame",
+        "d": "Đọc text từ ảnh"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 26,
+      "question": "Thuộc tính nào lấy FPS gốc của video?",
+      "options": {
+        "a": "cv2.CAP_PROP_FPS",
+        "b": "cv2.CAP_PROP_FRAME_RATE",
+        "c": "cv2.GET_FPS",
+        "d": "cv2.VIDEO_FPS"
+      },
+      "answer": "a"
+    },
+    {
+      "id": 27,
+      "question": "Công thức tính FPS real-time khi xử lý video là gì?",
+      "options": {
+        "a": "1/thời_gian_xử_lý",
+        "b": "thời_gian_xử_lý",
+        "c": "1+thời_gian_xử_lý",
+        "d": "thời_gian_xử_lý/1"
+      },
+      "answer": "a"
+    },
+    {
+      "id": 28,
+      "question": "Tham số nào trong cv2.imwrite() điều chỉnh chất lượng ảnh JPEG?",
+      "options": {
+        "a": "cv2.JPEG_QUALITY",
+        "b": "cv2.IMAGE_QUALITY",
+        "c": "cv2.IMWRITE_PNG_QUALITY",
+        "d": "cv2.IMWRITE_JPEG_QUALITY"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 29,
+      "question": "Phương thức nào kiểm tra xem video có mở thành công không?",
+      "options": {
+        "a": "video.checkOpen()",
+        "b": "video.isOpened()",
+        "c": "video.isOpen()",
+        "d": "video.opened()"
+      },
+      "answer": "b"
+    },
+    {
+      "id": 30,
+      "question": "Hàm nào được sử dụng để kết nối Google Drive với Colab?",
+      "options": {
+        "a": "drive.mount()",
+        "b": "drive.connect()",
+        "c": "drive.attach()",
+        "d": "drive.link()"
+      },
+      "answer": "a"
+    }
+  ]
+}

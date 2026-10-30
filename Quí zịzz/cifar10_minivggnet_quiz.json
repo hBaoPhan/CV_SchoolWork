@@ -1,0 +1,230 @@
+[
+  {
+    "id": 1,
+    "question": "Trước khi đưa vào model, ảnh CIFAR-10 được xử lý như thế nào?",
+    "options": {
+      "a": "Resize về 224×224",
+      "b": "Chuyển sang grayscale",
+      "c": "Augmentation với rotation và flip",
+      "d": "Scale về [0,1] và one-hot encoding labels"
+    },
+    "answer": "d",
+    "explanation": "Bộ dữ liệu CIFAR-10 có kích thước gốc là 32×32 (RGB). Bước tiền xử lý chuẩn bắt buộc cơ bản là chuẩn hóa giá trị pixel về [0, 1] và one-hot encoding nhãn."
+  },
+  {
+    "id": 2,
+    "question": "Trong MiniVGGNet, mỗi block CONV có cấu trúc gì?",
+    "options": {
+      "a": "CONV × 2 → RELU → POOL",
+      "b": "CONV → POOL → RELU → BN → DROPOUT",
+      "c": "CONV → BN → RELU → DROPOUT → POOL",
+      "d": "(CONV → RELU → BN) × 2 → POOL → DROPOUT"
+    },
+    "answer": "d",
+    "explanation": "Cấu trúc một block chuẩn của MiniVGGNet gồm: (CONV → RELU → BN) × 2 → POOL → DROPOUT."
+  },
+  {
+    "id": 3,
+    "question": "Tác dụng của Learning Rate Decay là gì?",
+    "options": {
+      "a": "Tăng tốc độ training",
+      "b": "Tăng accuracy ngay từ đầu",
+      "c": "Giảm số lượng epochs cần thiết",
+      "d": "Giảm dần LR để fine-tune và tránh dao động cuối training"
+    },
+    "answer": "d",
+    "explanation": "Giảm dần learning rate giúp các bước cập nhật trọng số nhỏ lại khi tiến gần cực tiểu, giúp tinh chỉnh chính xác và tránh bị dao động quanh đáy hàm loss."
+  },
+  {
+    "id": 4,
+    "question": "Optimizer nào được sử dụng trong lab với learning_rate=0.01, momentum=0.9?",
+    "options": {
+      "a": "Adagrad",
+      "b": "SGD với Nesterov momentum",
+      "c": "Adam",
+      "d": "RMSprop"
+    },
+    "answer": "b",
+    "explanation": "Bộ tham số learning_rate=0.01, momentum=0.9 (và nesterov=True) là cấu hình kinh điển của SGD with Nesterov momentum."
+  },
+  {
+    "id": 5,
+    "question": "Trong kiến trúc MiniVGGNet, số lượng filters thay đổi như thế nào qua các blocks?",
+    "options": {
+      "a": "Giảm dần: 128 → 64 → 32",
+      "b": "Không đổi: 32 → 32 → 32",
+      "c": "Tăng dần: 32 → 64 → 128",
+      "d": "Tăng gấp đôi: 32 → 64, sau đó giảm về 32"
+    },
+    "answer": "c",
+    "explanation": "Theo nguyên lý thiết kế CNN và họ VGG, khi kích thước spatial giảm qua pooling thì số lượng filters sẽ tăng dần (ví dụ 32 → 64 → 128) để học nhiều đặc trưng phức tạp hơn."
+  },
+  {
+    "id": 6,
+    "question": "Lợi ích nào KHÔNG phải của Batch Normalization?",
+    "options": {
+      "a": "Cho phép sử dụng learning rate cao hơn",
+      "b": "Giảm số lượng tham số của mô hình",
+      "c": "Giảm Internal Covariate Shift",
+      "d": "Có tác dụng regularization nhẹ"
+    },
+    "answer": "b",
+    "explanation": "Batch Normalization không làm giảm tham số mà ngược lại còn bổ sung thêm tham số có thể học (gamma và beta cho mỗi channel)."
+  },
+  {
+    "id": 7,
+    "question": "Trong MiniVGGNet, dropout rate được sử dụng là bao nhiêu cho CONV blocks và FC layers?",
+    "options": {
+      "a": "0.25 cho cả hai",
+      "b": "0.5 cho cả hai",
+      "c": "0.25 cho CONV, 0.5 cho FC",
+      "d": "0.5 cho CONV, 0.25 cho FC"
+    },
+    "answer": "c",
+    "explanation": "Trong MiniVGGNet, lớp tích chập dùng tỉ lệ nhẹ 0.25 để giữ đặc trưng không gian, trong khi lớp Dense/FC chứa rất nhiều tham số nên áp dụng 0.5."
+  },
+  {
+    "id": 8,
+    "question": "Spatial Dropout khác Standard Dropout ở điểm nào?",
+    "options": {
+      "a": "Spatial Dropout chỉ dùng cho RNN",
+      "b": "Spatial Dropout drop toàn bộ feature map, phù hợp cho CNN",
+      "c": "Spatial Dropout có tỷ lệ dropout cao hơn",
+      "d": "Không có sự khác biệt"
+    },
+    "answer": "b",
+    "explanation": "Spatial Dropout loại bỏ ngẫu nhiên toàn bộ 2D feature map (kênh), phá vỡ tương quan mạnh giữa các pixel lân cận trong ảnh."
+  },
+  {
+    "id": 9,
+    "question": "So với LeNet-5, VGG có tiến bộ quan trọng nào?",
+    "options": {
+      "a": "Chứng minh độ sâu của mạng quan trọng, dùng filter nhỏ nhiều lớp",
+      "b": "Sử dụng Average Pooling thay vì Max Pooling",
+      "c": "Giảm số lượng parameters",
+      "d": "Sử dụng Sigmoid thay vì ReLU"
+    },
+    "answer": "a",
+    "explanation": "VGG chứng minh tầm quan trọng của độ sâu mạng (depth) bằng cách xếp chồng nhiều lớp filter nhỏ 3×3 liên tiếp thay vì các filter lớn đơn lẻ."
+  },
+  {
+    "id": 10,
+    "question": "Theo kết quả lab, model KHÔNG CÓ Batch Normalization có vấn đề gì?",
+    "options": {
+      "a": "Training chậm hơn 43%",
+      "b": "Không thể converge",
+      "c": "Có quá nhiều parameters",
+      "d": "Bị overfitting nhiều hơn và accuracy thấp hơn (~79%)"
+    },
+    "answer": "d",
+    "explanation": "Khi không có Batch Normalization, mô hình bị overfitting rõ rệt hơn, khoảng cách giữa train và validation tăng lên và độ chính xác thấp hơn (~79% so với ~83-84%)."
+  },
+  {
+    "id": 11,
+    "question": "Tại sao VGG sử dụng filter 3×3 thay vì filter lớn hơn?",
+    "options": {
+      "a": "Vì filter 3×3 chạy nhanh nhất trên GPU",
+      "b": "Vì filter 3×3 là tiêu chuẩn bắt buộc của Keras",
+      "c": "Vì hai lớp 3×3 có receptive field tương đương 5×5 nhưng ít tham số hơn",
+      "d": "Vì filter 3×3 không cần padding"
+    },
+    "answer": "c",
+    "explanation": "Xếp chồng hai lớp 3×3 cho receptive field tương đương một lớp 5×5 nhưng số tham số giảm khoảng 28% và bổ sung thêm hàm phi tuyến ReLU."
+  },
+  {
+    "id": 12,
+    "question": "Với input 32×32, sau khi qua CONV 3×3 với padding='same' và MaxPooling 2×2, output size là bao nhiêu?",
+    "options": {
+      "a": "30×30",
+      "b": "16×16",
+      "c": "15×15",
+      "d": "32×32"
+    },
+    "answer": "b",
+    "explanation": "CONV 3×3 với padding='same' giữ nguyên kích thước 32×32. Sau đó qua MaxPooling 2×2 (stride 2) giảm kích thước còn 16×16."
+  },
+  {
+    "id": 13,
+    "question": "Khi nào NÊN sử dụng Dropout?",
+    "options": {
+      "a": "Trong quá trình testing",
+      "b": "Khi có ít dữ liệu training",
+      "c": "Khi model bị overfitting",
+      "d": "Khi model đang underfitting"
+    },
+    "answer": "c",
+    "explanation": "Dropout là kỹ thuật regularization dùng để hạn chế overfitting, giúp mô hình tổng quát hóa tốt hơn trên tập dữ liệu kiểm thử."
+  },
+  {
+    "id": 14,
+    "question": "Batch Normalization được áp dụng ở đâu trong cấu trúc CONV → RELU → BN?",
+    "options": {
+      "a": "Giữa CONV và RELU",
+      "b": "Trước CONV",
+      "c": "Sau RELU",
+      "d": "Không quan trọng, đặt ở đâu cũng được"
+    },
+    "answer": "c",
+    "explanation": "Theo đúng thứ tự được nêu trong chuỗi CONV → RELU → BN, Batch Normalization nằm ở vị trí sau lớp RELU."
+  },
+  {
+    "id": 15,
+    "question": "Tham số axis=chan_dim trong BatchNormalization có tác dụng gì?",
+    "options": {
+      "a": "Xác định batch size",
+      "b": "Xác định vị trí của channel dimension",
+      "c": "Xác định số chiều của input",
+      "d": "Xác định trục nào để tính mean và variance"
+    },
+    "answer": "b",
+    "explanation": "Tham số axis dùng để chỉ định vị trí của trục kênh màu/đặc trưng (channel dimension, ví dụ -1 cho channels_last hoặc 1 cho channels_first)."
+  },
+  {
+    "id": 16,
+    "question": "Đặc điểm nào KHÔNG phải của VGG family?",
+    "options": {
+      "a": "Xếp chồng nhiều CONV trước khi POOL",
+      "b": "Sử dụng filter 3×3 đồng nhất",
+      "c": "Sử dụng Inception modules",
+      "d": "Tăng số filters khi đi sâu vào mạng"
+    },
+    "answer": "c",
+    "explanation": "Inception modules là đặc trưng cốt lõi của mạng GoogLeNet/Inception, không thuộc về họ mạng VGG."
+  },
+  {
+    "id": 17,
+    "question": "Trong quá trình inference/testing, Batch Normalization sử dụng gì để chuẩn hóa?",
+    "options": {
+      "a": "Mean và variance của batch hiện tại",
+      "b": "Không cần chuẩn hóa nữa",
+      "c": "Mean và variance của toàn bộ test set",
+      "d": "Running mean và variance từ training"
+    },
+    "answer": "d",
+    "explanation": "Trong quá trình inference, Batch Normalization sử dụng running mean và running variance đã tích lũy động trong lúc training để chuẩn hóa."
+  },
+  {
+    "id": 18,
+    "question": "Trong lab, batch_size được sử dụng là bao nhiêu?",
+    "options": {
+      "a": "64",
+      "b": "32",
+      "c": "256",
+      "d": "128"
+    },
+    "answer": "a",
+    "explanation": "Trong bài lab MiniVGGNet trên CIFAR-10 chuẩn, giá trị batch_size được thiết lập là 64."
+  },
+  {
+    "id": 19,
+    "question": "CIFAR-10 dataset có bao nhiêu classes và kích thước ảnh là bao nhiêu?",
+    "options": {
+      "a": "10 classes, 224×224 RGB",
+      "b": "10 classes, 32×32 RGB",
+      "c": "100 classes, 32×32 RGB",
+      "d": "10 classes, 28×28 RGB"
+    },
+    "answer": "b",
+    "explanation": "Tập CIFAR-10 gồm 10 lớp phân loại và mỗi ảnh có kích thước không gian 32×32 pixel, 3 kênh màu RGB."
+  }
+]

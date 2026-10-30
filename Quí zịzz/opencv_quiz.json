@@ -1,0 +1,225 @@
+{
+  "quiz_title": "OpenCV Video Processing and FPS",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Lệnh nào dùng để cài đặt OpenCV phiên bản headless trong Google Colab?",
+      "options": {
+        "a": "!pip install opencv-python-headless",
+        "b": "!pip install opencv",
+        "c": "!pip install opencv-python",
+        "d": "!pip install cv"
+      },
+      "answer": "a"
+    },
+    {
+      "id": 2,
+      "question": "Để chuyển đổi ảnh từ BGR sang RGB trong OpenCV, ta dùng hàm nào?",
+      "options": {
+        "a": "cv2.changeColor(frame, BGR_TO_RGB)",
+        "b": "cv2.convertColor(frame, cv2.BGR2RGB)",
+        "c": "cv2.transform(frame, 'BGR', 'RGB')",
+        "d": "cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 3,
+      "question": "Thuộc tính nào dùng để lấy FPS gốc của video?",
+      "options": {
+        "a": "cv2.CAP_PROP_FRAMERATE",
+        "b": "cv2.CAP_PROP_SPEED",
+        "c": "cv2.CAP_PROP_FPS",
+        "d": "cv2.CAP_PROP_RATE"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 4,
+      "question": "Trong hàm process_video_with_fps(), mục đích của việc lưu mỗi 10 frame là gì?",
+      "options": {
+        "a": "Tăng tốc độ xử lý",
+        "b": "Tăng FPS",
+        "c": "Cải thiện chất lượng video",
+        "d": "Tiết kiệm bộ nhớ"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 5,
+      "question": "FourCC code 'mp4v' được sử dụng để làm gì?",
+      "options": {
+        "a": "Đọc video MP4",
+        "b": "Kiểm tra định dạng video",
+        "c": "Chuyển đổi video sang MP4",
+        "d": "Xác định codec để ghi video"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 6,
+      "question": "Công thức tính FPS thời gian thực trong bài lab là gì?",
+      "options": {
+        "a": "fps = 1.0 / processing_time",
+        "b": "fps = processing_time",
+        "c": "fps = processing_time * 1000",
+        "d": "fps = frame_count / total_time"
+      },
+      "answer": "a"
+    },
+    {
+      "id": 7,
+      "question": "Để đóng video capture object sau khi sử dụng xong, ta dùng phương thức nào?",
+      "options": {
+        "a": "cap.close()",
+        "b": "cap.finish()",
+        "c": "cap.release()",
+        "d": "cap.destroy()"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 8,
+      "question": "Trong cell bonus, thuật toán Laplacian được sử dụng để tính toán gì?",
+      "options": {
+        "a": "Độ mờ (blur) của ảnh",
+        "b": "Độ sáng của ảnh",
+        "c": "Màu sắc của ảnh",
+        "d": "Kích thước của ảnh"
+      },
+      "answer": "a"
+    },
+    {
+      "id": 9,
+      "question": "Font chữ mặc định được sử dụng trong bài lab là gì?",
+      "options": {
+        "a": "cv2.FONT_HERSHEY_COMPLEX",
+        "b": "cv2.FONT_HERSHEY_PLAIN",
+        "c": "cv2.FONT_HERSHEY_SCRIPT",
+        "d": "cv2.FONT_HERSHEY_SIMPLEX"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 10,
+      "question": "Để vẽ hình chữ nhật (rectangle) lên frame, ta sử dụng hàm nào?",
+      "options": {
+        "a": "cv2.drawRect()",
+        "b": "cv2.box()",
+        "c": "cv2.rectangle()",
+        "d": "cv2.addRectangle()"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 11,
+      "question": "Công thức tính thời lượng video (giây) là gì?",
+      "options": {
+        "a": "duration = fps / frame_count",
+        "b": "duration = frame_count - fps",
+        "c": "duration = fps * frame_count",
+        "d": "duration = frame_count / fps"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 12,
+      "question": "Trong bài lab, màu xanh lá (green) được biểu diễn trong BGR format như thế nào?",
+      "options": {
+        "a": "(255, 255, 0)",
+        "b": "(255, 0, 0)",
+        "c": "(0, 0, 255)",
+        "d": "(0, 255, 0)"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 13,
+      "question": "Hàm cap.read() trả về giá trị gì?",
+      "options": {
+        "a": "Chỉ trả về trạng thái đọc thành công (True/False)",
+        "b": "Chỉ trả về frame",
+        "c": "Trả về None nếu không đọc được",
+        "d": "Trả về tuple (ret, frame) với ret là trạng thái và frame là dữ liệu"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 14,
+      "question": "Để tạo VideoWriter object trong OpenCV, ta cần những tham số nào?",
+      "options": {
+        "a": "Chỉ cần filename",
+        "b": "Cần filename, fourcc, fps, và kích thước (width, height)",
+        "c": "Chỉ cần filename, fps, và kích thước",
+        "d": "Chỉ cần filename và fps"
+      },
+      "answer": "b"
+    },
+    {
+      "id": 15,
+      "question": "Hàm nào của OpenCV được sử dụng để mở một video file?",
+      "options": {
+        "a": "cv2.VideoCapture()",
+        "b": "cv2.OpenVideo()",
+        "c": "cv2.LoadVideo()",
+        "d": "cv2.ReadVideo()"
+      },
+      "answer": "a"
+    },
+    {
+      "id": 16,
+      "question": "Để lấy tổng số frame trong video, ta sử dụng thuộc tính nào?",
+      "options": {
+        "a": "cv2.CAP_PROP_FRAME_COUNT",
+        "b": "cv2.CAP_PROP_FRAMES",
+        "c": "cv2.CAP_PROP_TOTAL_FRAMES",
+        "d": "cv2.CAP_PROP_NUM_FRAMES"
+      },
+      "answer": "a"
+    },
+    {
+      "id": 17,
+      "question": "Hàm cv2.getTextSize() trả về giá trị gì?",
+      "options": {
+        "a": "Trả về một số integer duy nhất",
+        "b": "Chỉ trả về chiều rộng text",
+        "c": "Trả về tuple ((text_width, text_height), baseline)",
+        "d": "Chỉ trả về chiều cao text"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 18,
+      "question": "Hàm np.mean() trong numpy được dùng để tính gì?",
+      "options": {
+        "a": "Độ lệch chuẩn",
+        "b": "Giá trị lớn nhất",
+        "c": "Giá trị nhỏ nhất",
+        "d": "Giá trị trung bình"
+      },
+      "answer": "d"
+    },
+    {
+      "id": 19,
+      "question": "Phương thức out.write(frame) dùng để làm gì?",
+      "options": {
+        "a": "Lưu frame thành ảnh",
+        "b": "Hiển thị frame lên màn hình",
+        "c": "Ghi frame vào video output",
+        "d": "Đọc frame từ video"
+      },
+      "answer": "c"
+    },
+    {
+      "id": 20,
+      "question": "Phương thức nào được dùng để vẽ text lên frame?",
+      "options": {
+        "a": "cv2.writeText()",
+        "b": "cv2.addText()",
+        "c": "cv2.drawText()",
+        "d": "cv2.putText()"
+      },
+      "answer": "d"
+    }
+  ]
+}

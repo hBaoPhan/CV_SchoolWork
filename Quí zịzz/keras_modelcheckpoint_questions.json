@@ -1,0 +1,162 @@
+{
+  "topic": "Keras ModelCheckpoint & Checkpointing Quiz",
+  "total_questions": 13,
+  "questions": [
+    {
+      "id": 1,
+      "question": "Điều gì xảy ra nếu set verbose=1 trong ModelCheckpoint?",
+      "options": {
+        "a": "Tăng accuracy",
+        "b": "Model training nhanh hơn",
+        "c": "In thông báo khi save checkpoint",
+        "d": "Tự động visualize results"
+      },
+      "correct_answer": "c",
+      "explanation": "Tham số verbose=1 hiển thị thông báo trên console mỗi khi callback lưu model checkpoint."
+    },
+    {
+      "id": 2,
+      "question": "Tại sao nên monitor validation metrics thay vì training metrics?",
+      "options": {
+        "a": "Training metrics không chính xác",
+        "b": "Để phát hiện overfitting và đánh giá khả năng generalization",
+        "c": "Validation metrics tính toán nhanh hơn",
+        "d": "Validation set lớn hơn training set"
+      },
+      "correct_answer": "b",
+      "explanation": "Theo dõi validation metrics giúp đánh giá mô hình trên dữ liệu chưa từng thấy, từ đó phát hiện sớm hiện tượng học vẹt (overfitting) và đo lường khả năng tổng quát hóa (generalization)."
+    },
+    {
+      "id": 3,
+      "question": "File extension nào được khuyến nghị sử dụng cho Keras models trong TensorFlow 2.x?",
+      "options": {
+        "a": ".h5",
+        "b": ".hdf5",
+        "c": ".keras",
+        "d": ".pkl"
+      },
+      "correct_answer": "c",
+      "explanation": "Định dạng .keras là native format mới được khuyến nghị chính thức trong TensorFlow 2.x thay cho định dạng cũ .h5/.hdf5."
+    },
+    {
+      "id": 4,
+      "question": "Trong filename template, {val_loss:.4f} có nghĩa là gì?",
+      "options": {
+        "a": "Val_loss làm tròn đến 4",
+        "b": "Val_loss với 4 chữ số thập phân",
+        "c": "Val_loss chia cho 4",
+        "d": "Val_loss với 4 chữ số"
+      },
+      "correct_answer": "b",
+      "explanation": "Cú pháp :.4f trong Python string formatting định dạng số thực dấu phẩy động (float) lấy chính xác 4 chữ số sau dấu chấm thập phân."
+    },
+    {
+      "id": 5,
+      "question": "Tại sao cần tạo thư mục trước khi sử dụng ModelCheckpoint?",
+      "options": {
+        "a": "Để tăng tốc độ lưu file",
+        "b": "Không cần thiết, ModelCheckpoint tự tạo",
+        "c": "Để tránh lỗi khi ModelCheckpoint không thể tự tạo thư mục",
+        "d": "Để giảm dung lượng file"
+      },
+      "correct_answer": "c",
+      "explanation": "Tạo sẵn thư mục giúp tránh lỗi FileNotFoundError/OSError nếu đường dẫn thư mục lưu file chưa tồn tại khi callback thực hiện ghi file."
+    },
+    {
+      "id": 6,
+      "question": "Trong incremental checkpointing, làm thế nào để tìm model tốt nhất?",
+      "options": {
+        "a": "Chọn file cuối cùng",
+        "b": "Chọn file có val_loss thấp nhất trong filename",
+        "c": "Chọn file đầu tiên",
+        "d": "Chọn file có epoch cao nhất"
+      },
+      "correct_answer": "b",
+      "explanation": "Model tốt nhất là model có độ lỗi kiểm thử (val_loss) thấp nhất được ghi nhận trong tên file, không nhất thiết là ở epoch cuối cùng."
+    },
+    {
+      "id": 7,
+      "question": "Đoạn code checkpoint = ModelCheckpoint(fname, monitor=\"val_loss\", mode=\"min\", save_best_only=True) thực hiện chức năng gì?",
+      "options": {
+        "a": "Lưu model khi val_loss giảm",
+        "b": "Lưu model ngẫu nhiên",
+        "c": "Lưu model khi val_loss tăng",
+        "d": "Lưu model sau mỗi epoch"
+      },
+      "correct_answer": "a",
+      "explanation": "Với monitor='val_loss', mode='min' và save_best_only=True, callback chỉ lưu lại model khi chỉ số val_loss giảm xuống thấp hơn kỷ lục trước đó."
+    },
+    {
+      "id": 8,
+      "question": "Ưu điểm chính của phương pháp \"Incremental Checkpointing\" là gì?",
+      "options": {
+        "a": "Theo dõi được chi tiết quá trình cải thiện model",
+        "b": "Training nhanh hơn",
+        "c": "Tiết kiệm không gian lưu trữ",
+        "d": "Không cần nhiều memory"
+      },
+      "correct_answer": "a",
+      "explanation": "Lưu riêng từng file mỗi khi model cải thiện giúp giữ lại toàn bộ lịch sử tiến bộ của mô hình qua các epoch."
+    },
+    {
+      "id": 9,
+      "question": "Nếu training bị gián đoạn ở epoch 25, lợi ích của checkpointing là gì?",
+      "options": {
+        "a": "Tự động hoàn thành training",
+        "b": "Không có lợi ích gì",
+        "c": "Có thể tiếp tục training từ epoch 25",
+        "d": "Phải training lại từ đầu"
+      },
+      "correct_answer": "c",
+      "explanation": "Có thể load lại checkpoint ở epoch 25 và dùng initial_epoch để tiếp tục quá trình huấn luyện mà không phải chạy lại từ đầu."
+    },
+    {
+      "id": 10,
+      "question": "ModelCheckpoint callback trong Keras được sử dụng để làm gì?",
+      "options": {
+        "a": "Tăng tốc độ training",
+        "b": "Giảm memory usage",
+        "c": "Lưu model weights trong quá trình training",
+        "d": "Tự động điều chỉnh learning rate"
+      },
+      "correct_answer": "c",
+      "explanation": "ModelCheckpoint được dùng để tự động lưu lại mô hình hoặc bộ trọng số (weights) trong quá trình training."
+    },
+    {
+      "id": 13,
+      "question": "Trong filename template \"weights-{epoch:03d}-{val_loss:.4f}.keras\", {epoch:03d} có nghĩa là gì?",
+      "options": {
+        "a": "Epoch number nhân 3",
+        "b": "3 epochs đầu tiên",
+        "c": "Epoch number với 3 chữ số, thêm 0 phía trước nếu cần",
+        "d": "Epoch number chia cho 3"
+      },
+      "correct_answer": "c",
+      "explanation": "Định dạng :03d biểu diễn số nguyên có độ rộng tối thiểu 3 chữ số, tự động điền thêm số 0 ở đầu nếu số có ít hơn 3 chữ số (ví dụ: 001, 025)."
+    },
+    {
+      "id": 14,
+      "question": "Nếu muốn lưu model có accuracy cao nhất thay vì loss thấp nhất, cần thay đổi gì?",
+      "options": {
+        "a": "monitor=\"accuracy\", mode=\"max\"",
+        "b": "monitor=\"val_accuracy\", mode=\"min\"",
+        "c": "monitor=\"val_accuracy\", mode=\"max\"",
+        "d": "monitor=\"loss\", mode=\"min\""
+      },
+      "correct_answer": "c",
+      "explanation": "Cần theo dõi độ chính xác trên tập validation (val_accuracy) và đặt chế độ tìm giá trị lớn nhất (mode='max')."
+    },
+    {
+      "id": 15,
+      "question": "Để tạo ensemble model từ top-k checkpoints, cần làm gì?",
+      "options": {
+        "a": "Không thể tạo ensemble từ checkpoints",
+        "b": "Load một checkpoint bất kỳ",
+        "c": "Chỉ dùng checkpoint cuối cùng",
+        "d": "Load k checkpoints tốt nhất và kết hợp predictions"
+      },
+      "correct_answer": "d",
+      "explanation": "Kỹ thuật Checkpoint Ensembling thực hiện bằng cách tải lên k checkpoints tốt nhất và kết hợp kết quả dự đoán của chúng (ví dụ: lấy trung bình xác suất)."
+    }
+  ]
+}
