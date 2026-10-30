@@ -1,0 +1,228 @@
+Tóm tắt các nội dung điều chỉnh chi tiết
+1. Đổi tên chương và định hướng nghiên cứu
+Tiêu đề mới: "Chương 2. Phương pháp thực hiện và thiết kế hệ thống".
+Định hướng mở đầu: Thể hiện rõ nhóm xây dựng một hệ thống hoàn chỉnh đề xuất ứng dụng và so sánh đối chuẩn 3 kiến trúc mô hình thị giác máy tính đã được kiểm chứng (Faster R-CNN, YOLOv5, YOLOv8), không tạo kỳ vọng đề xuất kiến trúc mạng mới. Toàn bộ thông số thực tế, số liệu định lượng và biểu đồ huấn luyện sẽ được trình bày ở Chương 3.
+2. Mục 2.1: Hoàn thiện quy trình dữ liệu (Data Pipeline)
+Thống kê chi tiết & Bảng 2.1: Khảo sát đầy đủ 1.800 ảnh xám kích thước 
+200
+×
+200
+200×200, hơn 4.000 bounding boxes trên 6 lớp khuyết tật (vảy cán, mảng đốm, rạn chân chim, rỗ bề mặt, tạp chất xỉ, vết cào xước) cùng đặc điểm hình học từng loại (lỗi siêu nhỏ, phân tán vs. lỗi kéo dài).
+Kiểm tra tính toàn vẹn và lọc ảnh trùng/gần trùng: Bổ sung bước rà soát tính tương thích giữa file ảnh và file nhãn XML, loại bỏ tọa độ lỗi; ứng dụng thuật toán băm cảm nhận (Perceptual Hashing - pHash/dHash) để sàng lọc các ảnh trùng lặp hoặc gần trùng lặp, chống overfitting.
+Phân chia dữ liệu trước tăng cường: Thực hiện phân chia tập dữ liệu phân tầng (Stratified Splitting) tỷ lệ 70% Train (1.260 ảnh) / 15% Validation (270 ảnh) / 15% Test (270 ảnh) trước khi áp dụng bất kỳ kỹ thuật augmentation nào để tránh rò rỉ dữ liệu (data leakage).
+Chuẩn bị dữ liệu cho Faster R-CNN và YOLO: Chuẩn hóa nhãn độc lập: định dạng Pascal VOC XML / COCO JSON với tọa độ góc tuyệt đối 
+[
+𝑥
+𝑚
+𝑖
+𝑛
+,
+𝑦
+𝑚
+𝑖
+𝑛
+,
+𝑥
+𝑚
+𝑎
+𝑥
+,
+𝑦
+𝑚
+𝑎
+𝑥
+]
+[x
+min
+	​
+
+,y
+min
+	​
+
+,x
+max
+	​
+
+,y
+max
+	​
+
+] cho Faster R-CNN; định dạng văn bản chuẩn hóa 
+[
+𝑥
+𝑐
+𝑒
+𝑛
+𝑡
+𝑒
+𝑟
+,
+𝑦
+𝑐
+𝑒
+𝑛
+𝑡
+𝑒
+𝑟
+,
+𝑤
+,
+ℎ
+]
+∈
+[
+0
+,
+1
+]
+[x
+center
+	​
+
+,y
+center
+	​
+
+,w,h]∈[0,1] cho YOLOv5/v8.
+Xử lý ảnh xám cho mô hình tiền huấn luyện: Nhân bản kênh (channel replication: sao chép cường độ xám 1 kênh thành tensor 3 kênh RGB 
+𝐻
+×
+𝑊
+×
+3
+H×W×3) kết hợp chuẩn hóa điểm ảnh 
+[
+0.0
+,
+1.0
+]
+[0.0,1.0] và chuẩn hóa phân phối (mean/std) để tận dụng tối đa trọng số pretrained của ResNet-50 và CSPDarknet.
+Đính chính lập luận Tiling/Slicing: Loại bỏ nhận định mặc định "chống suy giảm độ phân giải do thu nhỏ ảnh" (vì ảnh gốc 200×200 thực tế được nội suy phóng đại lên 640×640). Chuyển sang định hướng khảo sát thực nghiệm để kiểm chứng xem việc chia nhỏ mảng ảnh có hỗ trợ phát hiện các cụm lỗi tập trung hay làm gia tăng độ trễ tính toán và tỷ lệ dương tính giả ở đường biên ghép.
+3. Mục 2.2: Tách riêng hàm mất mát (Loss Function) chuẩn cho từng mô hình
+
+Không mô tả chung hàm loss; giữ nguyên hàm mục tiêu baseline của các bản triển khai chính thức:
+
+YOLOv5 (chuẩn Ultralytics): Gồm 3 thành phần có trọng số 
+𝐿
+𝑐
+𝑙
+𝑠
+L
+cls
+	​
+
+ (BCEWithLogitsLoss), 
+𝐿
+𝑜
+𝑏
+𝑗
+L
+obj
+	​
+
+ (BCEWithLogitsLoss) và 
+𝐿
+𝑏
+𝑜
+𝑥
+L
+box
+	​
+
+ (Complete IoU - CIoU Loss). Ghi chú rõ Focal Loss là tham số tùy chọn cấu hình nâng cao (fl_gamma), cấu hình cơ sở giữ nguyên BCE.
+YOLOv8 (chuẩn Ultralytics): Loại bỏ nhánh Objectness; hàm loss gồm: 
+𝐿
+𝑐
+𝑙
+𝑠
+L
+cls
+	​
+
+ (BCE với nhãn động từ Task-Aligned Assigner trên Decoupled Head), 
+𝐿
+𝑏
+𝑜
+𝑥
+L
+box
+	​
+
+ (CIoU Loss), và 
+𝐿
+𝐷
+𝐹
+𝐿
+L
+DFL
+	​
+
+ (Distribution Focal Loss) nhằm hồi quy phân phối xác suất liên tục biên tọa độ đối với ranh giới khuyết tật mờ/không đồng đều.
+Faster R-CNN (chuẩn Torchvision): Chia tách 2 giai đoạn: Mạng RPN gồm 
+𝐿
+𝑟
+𝑝
+𝑛
+_
+𝑐
+𝑙
+𝑠
+L
+rpn_cls
+	​
+
+ (Binary Cross-Entropy) và 
+𝐿
+𝑟
+𝑝
+𝑛
+_
+𝑏
+𝑜
+𝑥
+L
+rpn_box
+	​
+
+ (Smooth L1 Loss); Đầu RoI Heads gồm 
+𝐿
+𝑟
+𝑜
+𝑖
+_
+𝑐
+𝑙
+𝑠
+L
+roi_cls
+	​
+
+ (Multi-class Cross-Entropy Softmax trên 6 lớp khuyết tật + 1 lớp nền) và 
+𝐿
+𝑟
+𝑜
+𝑖
+_
+𝑏
+𝑜
+𝑥
+L
+roi_box
+	​
+
+ (Smooth L1 Loss cho từng lớp).
+Bổ sung Bảng 2.2 tóm tắt so sánh cấu trúc kiến trúc và hàm mục tiêu của 3 mô hình.
+4. Mục 2.3: Lựa chọn và thiết kế các kiến trúc mô hình thực nghiệm
+Đổi tên tiêu đề thành "2.3. Lựa chọn và thiết kế các kiến trúc mô hình thực nghiệm".
+Chuẩn hóa cách phân loại: Anchor-based One-Stage (YOLOv5) và Anchor-free One-Stage (YOLOv8) thay cho cách gọi "tĩnh/động".
+Chuyển các nhận định về mAP cao hay sự cân bằng tối ưu thành đặc điểm kỹ thuật cần kiểm chứng thông qua số liệu thực nghiệm ở Chương 3.
+5. Mục 2.4: Khả năng giải thích của mô hình qua Eigen-CAM (Mở rộng)
+Đính chính nguyên lý: Eigen-CAM phân tích thành phần chính (PCA / SVD) trực tiếp trên các feature activation maps của các tầng tích chập sâu nhất; trích xuất vector riêng thứ nhất (first eigenvector) mà hoàn toàn không cần lan truyền ngược gradient (gradient-free) và không phụ thuộc nhãn lớp (class-agnostic).
+Định vị phạm vi: Chuyển thành module phân tích định tính bổ trợ và hướng phát triển mở rộng nhằm kiểm tra độ tin cậy mô hình, không nằm trong luồng tính toán bắt buộc của đường ống phát hiện thời gian thực.
+6. Mục 2.5: Quy trình thực nghiệm và Tích hợp hệ thống Dashboard
+Xác định rõ tỷ lệ 70/15/15 là tỷ lệ nhóm chủ động lựa chọn phân tầng (Stratified Split).
+Thống nhất tiêu chí lựa chọn checkpoint tốt nhất trên tập Validation là chỉ số toàn diện 
+mAP@0.5:0.95
+mAP@0.5:0.95.
+Bổ sung thiết kế tích hợp mô hình vào Dashboard giám sát thời gian thực: gồm khối xử lý suy luận ngầm (Inference Engine) xuất dữ liệu JSON chuẩn và khối giao diện người dùng (Dashboard UI) hiển thị bounding boxes, biểu đồ phân bố 6 loại lỗi theo ca sản xuất và cơ chế cảnh báo tự động khi xuất hiện khuyết tật vượt ngưỡng an toàn.
