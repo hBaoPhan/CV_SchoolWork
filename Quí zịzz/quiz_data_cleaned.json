@@ -1,12 +1,202 @@
 {
-  "quiz_title": "Computer Vision & Deep Learning Mini Game Quiz",
-  "version": "2.0.0",
-  "total_modules": 5,
-  "total_questions": 130,
+  "quiz_title": "Computer Vision & Deep Learning Comprehensive Quiz Game",
+  "version": "3.0.0",
+  "total_modules": 7,
+  "total_questions": 178,
   "modules": [
     {
       "module_id": "module_1",
-      "module_name": "Phần 1: Xử lý Video & OpenCV Cơ bản - Nâng cao",
+      "module_name": "Phần 1: Xử lý Ảnh cơ bản, Hình thái học & Thao tác Dữ liệu",
+      "english_title": "Image Processing, Morphology & Data Manipulation",
+      "description": "Các thao tác với PIL, NumPy, Matplotlib, phân tích hình thái học (Opening/Closing, Erosion/Dilation) và gắn nhãn liên thông bằng SciPy.",
+      "icon": "🖼️",
+      "total_questions": 15,
+      "questions": [
+        {
+          "id": "IMG_01",
+          "question": "Trong xử lý ảnh hình thái học (Mathematical Morphology), phép mở (Opening) mang lại tác dụng chính nào đối với ảnh nhị phân?",
+          "options": {
+            "a": "Làm mờ ảnh và giảm độ tương phản của toàn bộ khung hình",
+            "b": "Nối liền các đoạn đứt gãy và lấp đầy các lỗ trống bên trong đối tượng",
+            "c": "Loại bỏ các điểm nhiễu hạt nhỏ li ti tách rời và làm mịn các chỗ lồi nhọn của biên đối tượng mà không làm biến đổi đáng kể diện tích",
+            "d": "Không làm thay đổi số lượng và hình dạng của đối tượng"
+          },
+          "answer": "c",
+          "explanation": "Phép Opening gồm phép Ăn mòn (Erosion) trước để xóa bỏ các vật thể nhỏ hơn phần tử cấu trúc, sau đó Giãn nở (Dilation) để khôi phục kích thước của đối tượng lớn."
+        },
+        {
+          "id": "IMG_02",
+          "question": "Để chuyển đổi một đối tượng hình ảnh màu (RGB) thành ảnh mức xám (Grayscale 8-bit) trong thư viện Pillow (PIL), cú pháp chuẩn là:",
+          "options": {
+            "a": "image.convert('RGB')",
+            "b": "image.convert('L')",
+            "c": "image.convert('BW')",
+            "d": "image.convert('GRAY')"
+          },
+          "answer": "b",
+          "explanation": "Trong PIL, mode 'L' (Luminance) đại diện cho ảnh xám 1 kênh 8-bit với các giá trị điểm ảnh trải dài từ 0 đến 255."
+        },
+        {
+          "id": "IMG_03",
+          "question": "Trong module scipy.ndimage, hàm nào được sử dụng để thực hiện phép toán hình thái học Opening trên ma trận ảnh nhị phân?",
+          "options": {
+            "a": "ndimage.open()",
+            "b": "ndimage.opening()",
+            "c": "ndimage.morphology_opening()",
+            "d": "ndimage.binary_opening()"
+          },
+          "answer": "d",
+          "explanation": "`scipy.ndimage.binary_opening(input, structure=...)` là hàm chuyên biệt thực thi phép Opening trên mảng nhị phân boolean."
+        },
+        {
+          "id": "IMG_04",
+          "question": "Trong cú pháp phân ngưỡng nhị phân `binary_image = 1 * (image_array < 200)` trên ảnh nền sáng đối tượng tối, các pixel có cường độ sáng < 200 sẽ nhận giá trị nào?",
+          "options": {
+            "a": "1 (Màu trắng đối tượng)",
+            "b": "0 (Màu đen nền)",
+            "c": "200",
+            "d": "255"
+          },
+          "answer": "a",
+          "explanation": "Biểu thức `(image_array < 200)` trả về mảng boolean (True/False). Khi nhân với 1, True trở thành 1 và False trở thành 0."
+        },
+        {
+          "id": "IMG_05",
+          "question": "Trong đoạn mã `binary_image = 1 * (image_array < 200)`, giá trị số 200 đại diện cho khái niệm nào trong xử lý ảnh?",
+          "options": {
+            "a": "Ngưỡng phân đoạn nhị phân (Threshold)",
+            "b": "Kích thước độ phân giải của bức ảnh",
+            "c": "Cường độ sáng cực đại của kênh màu",
+            "d": "Tổng số lượng pixel đối tượng"
+          },
+          "answer": "a",
+          "explanation": "200 là ngưỡng phân tách (threshold); các pixel có độ sáng dưới 200 được coi là đối tượng, trên 200 được coi là nền."
+        },
+        {
+          "id": "IMG_06",
+          "question": "Khi trực quan hóa hình ảnh bằng thư viện Matplotlib trong Python, câu lệnh nào được sử dụng để ẩn toàn bộ các vạch chia và trục tọa độ xung quanh khung hình?",
+          "options": {
+            "a": "plt.axis('off')",
+            "b": "plt.remove_axis()",
+            "c": "plt.hide_axis()",
+            "d": "plt.axis('on')"
+          },
+          "answer": "a",
+          "explanation": "`plt.axis('off')` loại bỏ các vạch số tọa độ x và y, giúp bức ảnh hiển thị sạch sẽ."
+        },
+        {
+          "id": "IMG_07",
+          "question": "Khi thực hiện phân tích thành phần liên thông bằng lệnh `labeled_image, num_features = ndimage.label(binary_image)` trong SciPy, giá trị trả về của hàm mang ý nghĩa gì?",
+          "options": {
+            "a": "Chỉ trả về số lượng đối tượng độc lập",
+            "b": "Chỉ trả về ma trận ảnh sau khi đã phân cụm",
+            "c": "Danh sách tọa độ trọng tâm của các đối tượng",
+            "d": "Cả ma trận ảnh đã được đánh số định danh từng vùng (labeled image) và tổng số lượng thành phần liên thông tìm thấy (num_features)"
+          },
+          "answer": "d",
+          "explanation": "Hàm trả về tuple gồm mảng nhãn đa mức (mỗi đối tượng là một số nguyên 1, 2, 3...) cùng biến đếm tổng số đối tượng `num_features`."
+        },
+        {
+          "id": "IMG_08",
+          "question": "Để trực quan hóa các thành phần liên thông (labeled components) sau khi phân đoạn bằng các màu sắc tương phản rõ rệt giúp mắt người dễ phân biệt các đối tượng kế nhau, colormap nào trong Matplotlib thường được ưu tiên?",
+          "options": {
+            "a": "'gray'",
+            "b": "'nipy_spectral'",
+            "c": "'hot'",
+            "d": "'viridis'"
+          },
+          "answer": "b",
+          "explanation": "Colormap 'nipy_spectral' có dải màu đa dạng và độ bão hòa cao, giúp các nhãn số nguyên liền kề nhau được hiển thị bằng các màu sắc tách biệt rõ ràng."
+        },
+        {
+          "id": "IMG_09",
+          "question": "Trong lệnh khởi tạo lưới vẽ `plt.subplots(2, 2, figsize=(15, 12))` của Matplotlib, tham số `figsize` định nghĩa điều gì?",
+          "options": {
+            "a": "Tổng số lượng ô hình vẽ subplot",
+            "b": "Kích thước chiều rộng và chiều cao của toàn bộ khung hình tính theo đơn vị inch",
+            "c": "Độ phân giải DPI của ảnh xuất ra",
+            "d": "Số lượng pixel chiều ngang và dọc"
+          },
+          "answer": "b",
+          "explanation": "`figsize=(width, height)` trong Matplotlib quy định kích thước hình học của canvas vẽ tính bằng đơn vị inch."
+        },
+        {
+          "id": "IMG_10",
+          "question": "Để chuyển đổi một đối tượng ảnh từ thư viện PIL (Pillow) thành một ma trận điểm ảnh đa chiều NumPy hỗ trợ tính toán số học, cú pháp chuẩn là:",
+          "options": {
+            "a": "np.array(image)",
+            "b": "np.transform(image)",
+            "c": "np.convert(image)",
+            "d": "np.matrix(image)"
+          },
+          "answer": "a",
+          "explanation": "`np.array(pil_image)` chuyển đổi đối tượng PIL thành ndarray với định dạng mảng (Height, Width, Channels) kiểu uint8."
+        },
+        {
+          "id": "IMG_11",
+          "question": "Trong các phép biến đổi hình thái học, tham số `structure=np.ones((5, 5))` truyền vào hàm hình thái định nghĩa thành phần nào?",
+          "options": {
+            "a": "Hình dạng và kích thước của phần tử cấu trúc (Structuring Element) dùng để quét so khớp cục bộ",
+            "b": "Kích thước của bức ảnh đầu ra",
+            "c": "Ngưỡng sáng cho phép lọc nhiễu",
+            "d": "Số lượng đối tượng cần tìm kiếm"
+          },
+          "answer": "a",
+          "explanation": "Structuring Element (ở đây là ma trận vuông 5x5 toàn số 1) là hạt nhân dùng để định nghĩa vùng lân cận trong các phép co/giãn hình thái học."
+        },
+        {
+          "id": "IMG_12",
+          "question": "Để đọc trực tiếp một bức ảnh từ luồng dữ liệu byte tải lên bộ nhớ (ví dụ từ uploaded bytes trong Colab hoặc buffer bộ nhớ), cú pháp kết hợp chuẩn giữa thư viện PIL và module `io` là gì?",
+          "options": {
+            "a": "Image.open(io.BytesIO(uploaded_bytes))",
+            "b": "Image.load(uploaded_bytes)",
+            "c": "Image.open(uploaded_bytes)",
+            "d": "Image.read(uploaded_bytes)"
+          },
+          "answer": "a",
+          "explanation": "`io.BytesIO` bọc dữ liệu byte thô thành một luồng tệp tin trong bộ nhớ (in-memory binary stream), cho phép `Image.open()` giải mã ảnh mà không cần ghi ra đĩa."
+        },
+        {
+          "id": "IMG_13",
+          "question": "Về mặt bản chất toán học và quy trình thực hiện, phép Opening trên ảnh nhị phân là sự kết hợp tuần tự của hai phép toán hình thái học cơ bản nào?",
+          "options": {
+            "a": "Phép Ăn mòn (Erosion) trước, sau đó áp dụng phép Giãn nở (Dilation)",
+            "b": "Phép Giãn nở (Dilation) trước, sau đó áp dụng phép Ăn mòn (Erosion)",
+            "c": "Phép Đóng (Closing) kết hợp với Gradient",
+            "d": "Phép Trừ ảnh với ảnh lọc trung vị"
+          },
+          "answer": "a",
+          "explanation": "Opening = Erosion rồi Dilation (xóa chi tiết nhỏ hơn SE mà không làm thay đổi hình dạng tổng thể). Ngược lại, Closing = Dilation rồi Erosion (hàn gắn lỗ thủng và vết nứt)."
+        },
+        {
+          "id": "IMG_14",
+          "question": "Trong thao tác phân ngưỡng nhị phân theo điều kiện `binary_image = 1 * (image_array < threshold)` để phát hiện đối tượng tối màu trên nền sáng, khi tăng giá trị ngưỡng threshold từ 200 lên 220, kết quả thu được sẽ là:",
+          "options": {
+            "a": "Ảnh sẽ phát sinh lỗi tràn bộ nhớ",
+            "b": "Sẽ có ít pixel được coi là đối tượng (pixel trắng) hơn",
+            "c": "Sẽ có nhiều pixel được coi là đối tượng (pixel trắng) hơn do điều kiện < 220 rộng hơn < 200",
+            "d": "Không có bất kỳ sự thay đổi nào"
+          },
+          "answer": "c",
+          "explanation": "Điều kiện < 220 bao hàm nhiều mức sáng hơn < 200, do đó diện tích các pixel thỏa mãn điều kiện và nhận giá trị 1 sẽ mở rộng ra."
+        },
+        {
+          "id": "IMG_15",
+          "question": "Khi hiển thị so sánh nhiều ảnh (ví dụ: ảnh gốc, ảnh xám, ảnh nhị phân và ảnh sau xử lý) trên cùng 1 hàng ngang với Matplotlib, cú pháp tạo lưới thích hợp là:",
+          "options": {
+            "a": "plt.subplots(1, 4)",
+            "b": "plt.subplots(4, 1)",
+            "c": "plt.subplots(3, 1)",
+            "d": "plt.subplots(2, 2)"
+          },
+          "answer": "a",
+          "explanation": "`plt.subplots(nrows=1, ncols=4)` tạo ra lưới hiển thị gồm đúng 1 hàng và 4 cột cạnh nhau."
+        }
+      ]
+    },
+    {
+      "module_id": "module_2",
+      "module_name": "Phần 2: Xử lý Video, OpenCV & Đo hiệu năng FPS",
       "english_title": "Video Processing, OpenCV & FPS Benchmark",
       "description": "Các kỹ thuật đọc/ghi video, chuyển đổi không gian màu, vẽ đồ họa, xử lý codec FourCC và đo lường FPS thời gian thực.",
       "icon": "🎥",
@@ -471,12 +661,12 @@
       ]
     },
     {
-      "module_id": "module_2",
-      "module_name": "Phần 2: TensorFlow/Keras Callbacks & ModelCheckpoint",
+      "module_id": "module_3",
+      "module_name": "Phần 3: Keras Callbacks, Checkpointing & tf.data Pipeline",
       "english_title": "TensorFlow/Keras Training Pipeline & Checkpoint Strategies",
       "description": "Cơ chế hoạt động của Callback, các chiến lược lưu mô hình (Best Only vs Incremental), định dạng SavedModel/H5 và khôi phục checkpoint.",
       "icon": "⚡",
-      "total_questions": 23,
+      "total_questions": 28,
       "questions": [
         {
           "id": "M2_01",
@@ -753,12 +943,72 @@
           },
           "answer": "a",
           "explanation": "Định dạng `.keras` là chuẩn định dạng lưu trữ hiện đại trong Keras 3, an toàn hơn và đóng gói kiến trúc/weights hiệu quả hơn định dạng HDF5 truyền thống."
+        },
+        {
+          "id": "M2_24",
+          "question": "Khi quản lý thư mục lưu checkpoint trong script huấn luyện, việc gọi `os.makedirs(dir_path, exist_ok=True)` có tác dụng gì?",
+          "options": {
+            "a": "Chỉ tạo thư mục nếu chưa tồn tại, và không báo lỗi FileExistsError nếu thư mục đã có từ trước",
+            "b": "Xóa sạch toàn bộ dữ liệu trong thư mục nếu đã tồn tại",
+            "c": "Tự động đổi tên thư mục cũ thành thư mục backup",
+            "d": "Nén dung lượng thư mục thành định dạng zip"
+          },
+          "answer": "a",
+          "explanation": "`exist_ok=True` ngăn cản ném ngoại lệ lỗi khi thư mục đích đã tồn tại, đảm bảo script chạy an toàn không bị gián đoạn."
+        },
+        {
+          "id": "M2_25",
+          "question": "Để cải thiện độ chính xác và tính ổn định dự đoán từ các tệp checkpoint đã lưu, kỹ thuật Model Ensembling từ Top-K Checkpoints được thực hiện như thế nào?",
+          "options": {
+            "a": "Chỉ chọn duy nhất một checkpoint tại epoch cuối cùng",
+            "b": "Tải đồng thời k mô hình có điểm kiểm định (validation score) tốt nhất, chạy dự đoán trên dữ liệu và lấy trung bình xác suất đầu ra (average predictions) của chúng",
+            "c": "Cộng dồn trọng số của tất cả các checkpoint thành một file duy nhất",
+            "d": "Huấn luyện lại từ đầu với k checkpoint làm khởi tạo"
+          },
+          "answer": "b",
+          "explanation": "Checkpoint Ensemble kết hợp dự đoán của các mô hình tốt nhất từ các mốc epoch khác nhau, giúp giảm phương sai dự đoán tương tự như mô hình bagging/ensemble mà không tốn công huấn luyện lại nhiều lần."
+        },
+        {
+          "id": "M2_26",
+          "question": "Trong đường ống xử lý dữ liệu tf.data của TensorFlow, hằng số `tf.data.AUTOTUNE` có tác dụng gì?",
+          "options": {
+            "a": "Tự động lựa chọn kích thước batch size tối ưu",
+            "b": "Cho phép TensorFlow tự động điều chỉnh số lượng luồng CPU song song và dung lượng bộ đệm đệm trước dựa trên tài nguyên phần cứng sẵn có tại runtime",
+            "c": "Tự động giảm learning rate khi huấn luyện",
+            "d": "Tự động sinh thêm ảnh mới"
+          },
+          "answer": "b",
+          "explanation": "AUTOTUNE điều chỉnh động số luồng cho map() và kích thước buffer cho prefetch(), xóa bỏ tình trạng CPU làm nghẽn cổ chai cho GPU."
+        },
+        {
+          "id": "M2_27",
+          "question": "Trong pipeline nạp dữ liệu của TensorFlow, phương thức `dataset.prefetch(tf.data.AUTOTUNE)` giúp tối ưu hiệu năng như thế nào?",
+          "options": {
+            "a": "Giảm độ phức tạp thuật toán của mô hình",
+            "b": "Thực hiện nạp trước (gối đầu) batch dữ liệu tiếp theo vào bộ nhớ trong lúc GPU đang bận tính toán trên batch hiện tại, loại bỏ thời gian nhàn rỗi của GPU",
+            "c": "Tự động xóa các file rác trên ổ cứng",
+            "d": "Giúp tăng độ chính xác phân loại"
+          },
+          "answer": "b",
+          "explanation": "Prefetching cho phép quá trình tiền xử lý dữ liệu trên CPU và tính toán huấn luyện trên GPU diễn ra đồng thời (overlap), tăng thông lượng tối đa."
+        },
+        {
+          "id": "M2_28",
+          "question": "Trong quá trình tinh chỉnh mô hình (Fine-Tuning), callback `ReduceLROnPlateau` có vai trò gì?",
+          "options": {
+            "a": "Tự động ngắt tiến trình huấn luyện ngay khi loss tăng",
+            "b": "Giảm tốc độ học (learning rate) theo một hệ số định trước khi một chỉ số theo dõi (như val_loss) ngừng cải thiện sau một số epoch, giúp mô hình thoát khỏi điểm dừng và hội tụ sâu hơn",
+            "c": "Tự động tăng kích thước batch size",
+            "d": "Giám sát dung lượng bộ nhớ RAM"
+          },
+          "answer": "b",
+          "explanation": "Khi loss đi ngang (plateau), việc giảm learning rate (ví dụ chia đôi hoặc giảm 10 lần) giúp mô hình thực hiện các bước nhảy tinh tế hơn để tiếp cận đáy cực tiểu."
         }
       ]
     },
     {
-      "module_id": "module_3",
-      "module_name": "Phần 3: Mạng Nơ-ron Tích chập & MiniVGGNet trên CIFAR-10",
+      "module_id": "module_4",
+      "module_name": "Phần 4: Mạng Nơ-ron Tích chập & MiniVGGNet trên CIFAR-10",
       "english_title": "Convolutional Neural Networks & MiniVGGNet Architecture",
       "description": "Cấu trúc khối Conv-BN-ReLU-Dropout, nguyên lý thiết kế họ VGG, cơ chế Batch Normalization và tối ưu SGD Momentum.",
       "icon": "🧠",
@@ -995,12 +1245,262 @@
       ]
     },
     {
-      "module_id": "module_4",
-      "module_name": "Phần 4: Học chuyển giao & Tinh chỉnh mô hình (Transfer Learning)",
+      "module_id": "module_5",
+      "module_name": "Phần 5: Phân đoạn Ảnh ngữ nghĩa & Kiến trúc U-Net",
+      "english_title": "Semantic Image Segmentation & U-Net Architecture",
+      "description": "Kiến trúc U-Net, Skip Connections, Conv2DTranspose, xử lý dữ liệu Oxford Pets (Trimap/Mask), chỉ số IoU và giải quyết mất cân bằng lớp.",
+      "icon": "🧩",
+      "total_questions": 20,
+      "questions": [
+        {
+          "id": "SEG_01",
+          "question": "Trong bài toán Semantic Segmentation, câu lệnh chuẩn nào để chuẩn hóa ma trận ảnh pixel về dải số thực [0.0, 1.0]?",
+          "options": {
+            "a": "img = img * 255",
+            "b": "img = img - np.mean(img)",
+            "c": "img = (img - 127.5) / 127.5",
+            "d": "img = img.astype(np.float32) / 255.0"
+          },
+          "answer": "d",
+          "explanation": "Chuyển kiểu sang float32 rồi chia 255.0 đưa giá trị pixel về [0, 1], tối ưu cho quá trình tính toán gradient trong mạng nơ-ron."
+        },
+        {
+          "id": "SEG_02",
+          "question": "Trong công thức tính chỉ số IoU (Intersection over Union) bằng mã nguồn, tại sao người ta thường cộng thêm một giá trị epsilon rất nhỏ (+ 1e-7) vào mẫu số?",
+          "options": {
+            "a": "Để tránh lỗi chia cho số 0 (ZeroDivisionError) khi cả prediction và ground truth đều không có vật thể",
+            "b": "Để chuẩn hóa kết quả về khoảng [0, 1]",
+            "c": "Để tăng tốc độ tính toán song song",
+            "d": "Để làm mượt đường cong hàm mất mát"
+          },
+          "answer": "a",
+          "explanation": "Khi mẫu số (Intersection + Union hoặc Union) bằng 0 (ví dụ ảnh không có pixel đối tượng), việc cộng hằng số epsilon như 1e-7 giúp phép chia không bị lỗi runtime."
+        },
+        {
+          "id": "SEG_03",
+          "question": "Tại sao mảng ground truth nhãn phân đoạn nhị phân (binary mask) thường phải đi qua lệnh `np.expand_dims(y, axis=-1)` trước khi đưa vào huấn luyện mô hình Keras?",
+          "options": {
+            "a": "Để xáo trộn ngẫu nhiên dữ liệu",
+            "b": "Để chuẩn hóa kích thước pixel",
+            "c": "Để bổ sung chiều kênh đặc trưng (channel dimension) từ hình dạng (Height, Width) thành (Height, Width, 1)",
+            "d": "Để mở rộng kích thước batch size"
+          },
+          "answer": "c",
+          "explanation": "Keras Conv2D yêu cầu tensor đầu vào có đủ 3 chiều không gian và kênh: (batch, height, width, channels). Mask 2D ban đầu cần mở rộng chiều cuối cùng thành 1 channel."
+        },
+        {
+          "id": "SEG_04",
+          "question": "Trong kiến trúc U-Net cho bài toán phân đoạn nhị phân (Binary Segmentation - 1 lớp đối tượng và nền), hàm kích hoạt nào được sử dụng ở tầng đầu ra (output layer)?",
+          "options": {
+            "a": "ReLU",
+            "b": "Sigmoid",
+            "c": "Tanh",
+            "d": "Softmax"
+          },
+          "answer": "b",
+          "explanation": "Hàm Sigmoid ánh xạ điểm số đầu ra của mỗi pixel độc lập về khoảng xác suất [0, 1], phù hợp cho phân loại nhị phân từng điểm ảnh."
+        },
+        {
+          "id": "SEG_05",
+          "question": "Khi sinh dữ liệu ảnh hình học nhân tạo (synthetic dataset) trong OpenCV, hàm nào được sử dụng để vẽ hình tròn?",
+          "options": {
+            "a": "cv2.fillPoly()",
+            "b": "cv2.ellipse()",
+            "c": "cv2.circle()",
+            "d": "cv2.rectangle()"
+          },
+          "answer": "c",
+          "explanation": "`cv2.circle(img, center, radius, color, thickness)` là hàm chuẩn để vẽ hoặc lấp đầy hình tròn."
+        },
+        {
+          "id": "SEG_06",
+          "question": "Trong các bài thực nghiệm phân đoạn đối tượng trên tập dữ liệu Oxford-IIIT Pet với tài nguyên phần cứng giới hạn, kích thước ảnh thường được tiền xử lý thu phóng (resize) chuẩn về:",
+          "options": {
+            "a": "64x64",
+            "b": "128x128",
+            "c": "512x512",
+            "d": "256x256"
+          },
+          "answer": "b",
+          "explanation": "Kích thước 128x128 là chuẩn kích thước phổ biến trong các tutorial và bài thực hành phân đoạn Oxford Pets, giúp huấn luyện nhanh mà vẫn giữ đủ chi tiết hình thái."
+        },
+        {
+          "id": "SEG_07",
+          "question": "Bộ dữ liệu Oxford-IIIT Pet cung cấp ground truth dạng Trimap (với 1: Đối tượng con vật, 2: Nền background, 3: Đường biên viền). Để trích xuất mặt nạ phân đoạn nhị phân con vật (foreground), điều kiện lọc nào được áp dụng?",
+          "options": {
+            "a": "(mask > 1).astype(np.float32)",
+            "b": "(mask == 2).astype(np.float32)",
+            "c": "(mask == 0).astype(np.float32)",
+            "d": "(mask == 1).astype(np.float32)"
+          },
+          "answer": "d",
+          "explanation": "Trong nhãn Trimap của Oxford Pets, pixel mang giá trị 1 tương ứng với phần thân con vật (Pet foreground), giá trị 2 là background, giá trị 3 là đường biên."
+        },
+        {
+          "id": "SEG_08",
+          "question": "Trong kiến trúc U-Net, lệnh nào của Keras được sử dụng để nối tắt (skip connection) kết hợp bản đồ đặc trưng từ khối Encoder sang khối Decoder tương ứng?",
+          "options": {
+            "a": "concatenate([u, c])",
+            "b": "multiply([u, c])",
+            "c": "subtract([u, c])",
+            "d": "add([u, c])"
+          },
+          "answer": "a",
+          "explanation": "U-Net sử dụng phép nối kênh `concatenate` (ghép nối theo trục channels), khác với ResNet sử dụng phép cộng phần tử `add`."
+        },
+        {
+          "id": "SEG_09",
+          "question": "Khi đánh giá mô hình phân đoạn trên tập kiểm thử bằng danh sách điểm số IoU của từng ảnh (individual_ious), hàm NumPy nào giúp xác định chỉ số mẫu (index) có kết quả dự đoán tồi tệ nhất?",
+          "options": {
+            "a": "np.argmax(individual_ious)",
+            "b": "np.argmin(individual_ious)",
+            "c": "np.argsort(individual_ious)",
+            "d": "np.sort(individual_ious)"
+          },
+          "answer": "b",
+          "explanation": "`np.argmin()` trả về chỉ số của phần tử có giá trị nhỏ nhất trong mảng, tương ứng với mẫu có điểm IoU thấp nhất để phân tích lỗi (error analysis)."
+        },
+        {
+          "id": "SEG_10",
+          "question": "Trong nhánh giải mã (Decoder) của mạng U-Net, lớp nào được sử dụng để vừa tăng kích thước không gian (upsampling) vừa học các trọng số tích chập đảo?",
+          "options": {
+            "a": "UpSampling2D(2)",
+            "b": "MaxPooling2D(2)",
+            "c": "Conv2D(64, 2, strides=2, padding='same')",
+            "d": "Conv2DTranspose(64, 2, strides=2, padding='same')"
+          },
+          "answer": "d",
+          "explanation": "`Conv2DTranspose` (còn gọi là Deconvolution) thực hiện tích chập chuyển vị, giúp tăng gấp đôi độ phân giải không gian của feature map đồng thời có tham số học được."
+        },
+        {
+          "id": "SEG_11",
+          "question": "Hàm nào trong thư viện OpenCV được sử dụng để tô kín một hình đa giác bất kỳ (ví dụ hình tam giác) bằng một màu nhất định để tạo ground truth mask?",
+          "options": {
+            "a": "cv2.fillPoly()",
+            "b": "cv2.rectangle()",
+            "c": "cv2.line()",
+            "d": "cv2.circle()"
+          },
+          "answer": "a",
+          "explanation": "`cv2.fillPoly()` nhận danh sách các đỉnh tọa độ và tô đặc toàn bộ vùng bên trong đa giác."
+        },
+        {
+          "id": "SEG_12",
+          "question": "Câu lệnh NumPy nào được sử dụng để khởi tạo một khung ảnh canvas màu đen hoàn toàn (tất cả điểm ảnh bằng 0) với kích thước và số kênh màu chỉ định?",
+          "options": {
+            "a": "np.ones((img_size, img_size, 3), dtype=np.uint8)",
+            "b": "np.zeros((img_size, img_size, 3), dtype=np.uint8)",
+            "c": "np.empty((img_size, img_size, 3), dtype=np.uint8)",
+            "d": "np.random.random((img_size, img_size, 3))"
+          },
+          "answer": "b",
+          "explanation": "`np.zeros()` tạo mảng với tất cả phần tử bằng 0, tương ứng màu đen trong không gian ảnh RGB với kiểu số nguyên uint8."
+        },
+        {
+          "id": "SEG_13",
+          "question": "Trong bài toán Semantic Segmentation, khi mô hình dự đoán tất cả các pixel đều là nền (background) nhưng chỉ số Accuracy vẫn đạt rất cao (ví dụ > 95%), hiện tượng này phản ánh điều gì?",
+          "options": {
+            "a": "Cần phải tăng tốc độ học (learning rate)",
+            "b": "Cần huấn luyện thêm nhiều epoch",
+            "c": "Accuracy bị đánh lừa do hiện tượng mất cân bằng lớp (Class Imbalance) nghiêm trọng và không phản ánh đúng năng lực phân đoạn",
+            "d": "Mô hình đã hội tụ tối ưu"
+          },
+          "answer": "c",
+          "explanation": "Đối tượng cần phân đoạn thường chiếm diện tích rất nhỏ so với nền (background). Đoán toàn bộ là nền vẫn cho accuracy cao; vì vậy bắt buộc phải dùng IoU (Jaccard Index) hoặc Dice Coefficient (F1-score)."
+        },
+        {
+          "id": "SEG_14",
+          "question": "Tại sao trong các tầng tích chập Conv2D của kiến trúc U-Net hiện đại, lập trình viên thường thiết lập tham số `padding='same'`?",
+          "options": {
+            "a": "Để tự động giảm hiện tượng overfitting",
+            "b": "Để tăng tốc độ tính toán phần cứng",
+            "c": "Để duy trì kích thước không gian (chiều cao và chiều rộng) của feature map không bị co rút sau phép tích chập, giúp dễ dàng ghép nối (concatenate) với decoder",
+            "d": "Để giảm bớt số lượng tham số"
+          },
+          "answer": "c",
+          "explanation": "`padding='same'` thêm số 0 ở biên để đầu ra giữ nguyên kích thước spatial với đầu vào, đảm bảo kích thước giữa tầng Encoder và Decoder khớp nhau hoàn hảo khi skip connection."
+        },
+        {
+          "id": "SEG_15",
+          "question": "Chỉ số Intersection over Union (IoU / Jaccard Index) trong phân đoạn ảnh được tính theo công thức toán học nào?",
+          "options": {
+            "a": "Union / Intersection",
+            "b": "Intersection / (Ground_truth + Prediction)",
+            "c": "(Intersection + Union) / 2",
+            "d": "Intersection / Union (Diện tích phần giao chia cho diện tích phần hợp)"
+          },
+          "answer": "d",
+          "explanation": "IoU = |A ∩ B| / |A ∪ B|, đo lường tỷ lệ trùng khớp giữa mặt nạ dự đoán và mặt nạ thực tế."
+        },
+        {
+          "id": "SEG_16",
+          "question": "Cú pháp chuẩn của thư viện Scikit-Learn để phân chia tập dữ liệu (features X và labels y) thành 2 phần Train và Test theo tỷ lệ 80% train và 20% test là gì?",
+          "options": {
+            "a": "train_test_split(X, y, test_size=0.8)",
+            "b": "train_test_split(X, y, split_ratio=0.8)",
+            "c": "train_test_split(X, y, test_size=0.2)",
+            "d": "train_test_split(X, y, train_size=0.2)"
+          },
+          "answer": "c",
+          "explanation": "`test_size=0.2` chỉ định dành 20% dữ liệu cho tập kiểm thử (test set) và 80% còn lại cho tập huấn luyện."
+        },
+        {
+          "id": "SEG_17",
+          "question": "Khi đầu ra của mạng nơ-ron phân đoạn nhị phân là một bản đồ xác suất với các giá trị thực liên tục từ 0.0 đến 1.0, ngưỡng cắt (threshold) tiêu chuẩn để nhị phân hóa thành mask (0 hoặc 1) là:",
+          "options": {
+            "a": "0.9",
+            "b": "0.7",
+            "c": "0.5",
+            "d": "0.3"
+          },
+          "answer": "c",
+          "explanation": "Ngưỡng 0.5 (50%) là ngưỡng phân định ranh giới mặc định; pixel có xác suất >= 0.5 được gán là đối tượng (1), ngược lại là nền (0)."
+        },
+        {
+          "id": "SEG_18",
+          "question": "Kiến trúc mạng nơ-ron U-Net (Ronneberger et al., 2015) ban đầu được thiết kế chuyên biệt và tối ưu nhất cho bài toán thị giác máy tính nào?",
+          "options": {
+            "a": "Chuyển đổi phong cách nghệ thuật (Style Transfer)",
+            "b": "Phát hiện vị trí hộp bao (Object Detection)",
+            "c": "Phân đoạn ngữ nghĩa hình ảnh (Image Semantic / Biomedical Segmentation)",
+            "d": "Phân loại nhãn ảnh đơn thuần (Image Classification)"
+          },
+          "answer": "c",
+          "explanation": "U-Net ra đời nhằm giải quyết bài toán phân đoạn hình ảnh y sinh học với tập dữ liệu ít nhưng yêu cầu định vị chính xác từng pixel tế bào."
+        },
+        {
+          "id": "SEG_19",
+          "question": "Hàm mất mát (Loss function) tiêu chuẩn nào được sử dụng phổ biến nhất khi huấn luyện mạng U-Net cho bài toán phân đoạn nhị phân (Binary Segmentation)?",
+          "options": {
+            "a": "Mean Squared Error (MSE)",
+            "b": "Sparse Categorical Crossentropy",
+            "c": "Categorical Crossentropy",
+            "d": "Binary Crossentropy (hoặc kết hợp Dice Loss)"
+          },
+          "answer": "d",
+          "explanation": "Binary Crossentropy đo sai số phân loại độc lập trên từng pixel nhị phân, là hàm loss chuẩn cho bài toán 1 lớp đối tượng và nền."
+        },
+        {
+          "id": "SEG_20",
+          "question": "Trong kiến trúc U-Net, các đường kết nối tắt (Skip Connections) nối trực tiếp từ tầng Encoder sang Decoder đóng vai trò quyết định nào?",
+          "options": {
+            "a": "Truyền tải trực tiếp thông tin không gian chi tiết và độ phân giải cao từ tầng đầu sang tầng giải mã, giúp khôi phục chính xác các đường biên đối tượng bị mất qua pooling",
+            "b": "Giảm số lượng tham số tính toán của mô hình",
+            "c": "Loại bỏ hoàn toàn sự cần thiết của hàm mất mát",
+            "d": "Ép mô hình chỉ học các đặc trưng toàn cục"
+          },
+          "answer": "a",
+          "explanation": "Tầng Pooling làm mất thông tin vị trí không gian chi tiết. Skip Connections chuyển trực tiếp các đặc trưng biên sắc nét từ Encoder sang Decoder để tái tạo mask chính xác."
+        }
+      ]
+    },
+    {
+      "module_id": "module_6",
+      "module_name": "Phần 6: Học chuyển giao & Tinh chỉnh chuyên sâu (Transfer Learning)",
       "english_title": "Transfer Learning & Two-Phase Fine-Tuning",
       "description": "So sánh Feature Extraction vs Fine-Tuning, chiến lược đóng băng layer, điều chỉnh learning rate 2 giai đoạn và data augmentation.",
       "icon": "🔄",
-      "total_questions": 20,
+      "total_questions": 28,
       "questions": [
         {
           "id": "M4_01",
@@ -1241,12 +1741,108 @@
           },
           "answer": "b",
           "explanation": "Chia cho 255 chuẩn hóa thang đo dữ liệu điểm ảnh về khoảng [0, 1], giúp giải thuật lan truyền ngược tối ưu hàm mất mát mượt mà hơn."
+        },
+        {
+          "id": "M4_21",
+          "question": "Tại sao các kỹ thuật tăng cường dữ liệu (Data Augmentation) chỉ được áp dụng trong pha huấn luyện (Training) mà không được áp dụng trên tập kiểm định (Validation)?",
+          "options": {
+            "a": "Để tiết kiệm thời gian xử lý và giảm tải cho GPU",
+            "b": "Tập validation cần phản ánh khách quan và trung thực nhất phân phối dữ liệu gốc chưa bị biến dạng để đánh giá đúng năng lực tổng quát hóa",
+            "c": "Vì TensorFlow cấm áp dụng augmentation trên validation data",
+            "d": "Vì validation data không có nhãn"
+          },
+          "answer": "b",
+          "explanation": "Tập validation dùng để đo hiệu năng thực tế; biến dạng ảnh validation sẽ làm sai lệch thước đo đánh giá năng lực của mô hình."
+        },
+        {
+          "id": "M4_22",
+          "question": "So với tầng Flatten truyền thống, việc sử dụng tầng `GlobalAveragePooling2D()` trước lớp phân loại cuối cùng mang lại ưu điểm vượt trội nào?",
+          "options": {
+            "a": "Giảm đáng kể số lượng tham số học (tránh bùng nổ tham số kết nối dày đặc), tăng tính bất biến không gian và hạn chế tối đa hiện tượng overfitting",
+            "b": "Tăng gấp đôi độ phân giải của đặc trưng",
+            "c": "Tăng tốc độ lan truyền ngược lên gấp 10 lần",
+            "d": "Bắt buộc đối với tất cả các mô hình học sâu"
+          },
+          "answer": "a",
+          "explanation": "Flatten giữ nguyên H*W*C tham số tạo ra ma trận Dense khổng lồ rất dễ overfit; GlobalAveragePooling2D lấy trung bình mỗi feature map thành 1 giá trị duy nhất (kích thước đúng bằng số kênh C), cực kỳ gọn nhẹ và tổng quát."
+        },
+        {
+          "id": "M4_23",
+          "question": "Kỹ thuật điều hòa L2 Regularization (Weight Decay) được áp dụng vào các tầng Dense nhằm mục đích kỹ thuật chính là gì?",
+          "options": {
+            "a": "Tự động điều chỉnh tốc độ học",
+            "b": "Giảm overfitting bằng cách phạt các trọng số có độ lớn quá cao, ép phân phối trọng số của mô hình nhỏ và phân bổ mượt mà hơn",
+            "c": "Tự động tìm kiếm siêu tham số tối ưu",
+            "d": "Tăng tốc độ đọc dữ liệu từ đĩa"
+          },
+          "answer": "b",
+          "explanation": "L2 thêm số hạng phạt vào hàm mất mát, ngăn chặn việc một vài nơ-ron nhận trọng số quá lớn gây phụ thuộc và quá khớp."
+        },
+        {
+          "id": "M4_24",
+          "question": "Kỹ thuật làm mượt nhãn (Label Smoothing, ví dụ epsilon = 0.1) trong hàm mất mát phân loại có tác dụng gì?",
+          "options": {
+            "a": "Rút ngắn một nửa số epoch huấn luyện",
+            "b": "Ngăn ngừa mô hình trở nên quá tự tin (overconfident) vào các nhãn One-hot tuyệt đối (1.0 và 0.0), từ đó cải thiện khả năng tổng quát hóa trên dữ liệu mới",
+            "c": "Tự động chuẩn hóa ảnh đầu vào",
+            "d": "Thay thế hoàn toàn hàm Softmax"
+          },
+          "answer": "b",
+          "explanation": "Thay vì ép đầu ra phân phối xác suất [1, 0, 0], Label Smoothing chuyển mục tiêu thành [0.9, 0.05, 0.05], giúp gradient không bị triệt tiêu và mạng tổng quát hóa tốt hơn."
+        },
+        {
+          "id": "M4_25",
+          "question": "Khi gọi mô hình tiền huấn luyện trong Keras với cú pháp `base_model(x, training=False)`, tham số `training=False` có tác động cụ thể nào lên các tầng Batch Normalization?",
+          "options": {
+            "a": "Vô hiệu hóa toàn bộ mô hình không cho chạy",
+            "b": "Ép buộc các tầng Batch Normalization sử dụng các giá trị thống kê trung bình động tích lũy (moving mean và moving variance) thay vì tính toán thống kê trên batch dữ liệu hiện tại",
+            "c": "Tắt hoàn toàn các hàm kích hoạt ReLU",
+            "d": "Tự động lưu trọng số ra file"
+          },
+          "answer": "b",
+          "explanation": "Khi đóng băng backbone, nếu không set training=False, các tầng Batch Normalization vẫn có thể cập nhật thống kê theo batch mới làm sai lệch các biểu diễn đặc trưng pre-trained."
+        },
+        {
+          "id": "M4_26",
+          "question": "Dấu hiệu rõ ràng nhất trên biểu đồ học tập (Learning Curves) cho thấy mô hình đang rơi vào trạng thái quá khớp (Overfitting) là:",
+          "options": {
+            "a": "Cả training loss và validation loss đều giảm đều đặn theo từng epoch",
+            "b": "Training loss tiếp tục giảm sâu trong khi Validation loss bắt đầu chững lại rồi tăng dần lên",
+            "c": "Validation loss luôn thấp hơn training loss",
+            "d": "Cả hai đồ thị đều dao động ngẫu nhiên quanh mức 0"
+          },
+          "answer": "b",
+          "explanation": "Khi train loss giảm mà val loss tăng, mô hình đã bắt đầu học thuộc lòng các chi tiết nhiễu của tập train và mất khả năng tổng quát hóa trên tập kiểm định."
+        },
+        {
+          "id": "M4_27",
+          "question": "Khi áp dụng phép biến đổi hình học (như xoay hoặc tịnh tiến ảnh), các vùng pixel trống ở viền biên thường được xử lý bằng phương pháp nào?",
+          "options": {
+            "a": "Mặc định gán màu đen hoàn toàn",
+            "b": "Điền bằng giá trị pixel lân cận gần nhất (Nearest pixel fill)",
+            "c": "Lấy đối xứng gương các pixel ở rìa biên (Reflection mode)",
+            "d": "Cả phương pháp Nearest pixel và Reflection đều được sử dụng phổ biến tùy cấu hình"
+          },
+          "answer": "d",
+          "explanation": "Trong ImageDataGenerator hoặc OpenCV, các chế độ điền viền như 'reflect', 'nearest', 'constant' đều hỗ trợ xử lý vùng trống sinh ra khi xoay hoặc dịch chuyển ảnh."
+        },
+        {
+          "id": "M4_28",
+          "question": "Khi huấn luyện phân loại hình ảnh chữ số viết tay (như MNIST), kỹ thuật tăng cường dữ liệu (Data Augmentation) nào sau đây KHÔNG NÊN áp dụng?",
+          "options": {
+            "a": "Thêm nhiễu Gauss ngẫu nhiên (Gaussian noise)",
+            "b": "Tịnh tiến ảnh một khoảng nhỏ (Translation)",
+            "c": "Xoay góc nghiêng nhẹ (Slight rotation)",
+            "d": "Lật ảnh theo chiều dọc (Vertical Flip)"
+          },
+          "answer": "d",
+          "explanation": "Lật dọc chữ số sẽ làm đảo lộn ý nghĩa ngữ nghĩa của số (ví dụ: biến số 6 thành số 9 hoặc ngược lại), gây nhiễu nhãn nghiêm trọng."
         }
       ]
     },
     {
-      "module_id": "module_5",
-      "module_name": "Phần 5: Nhận diện vật thể Faster R-CNN & Detectron2",
+      "module_id": "module_7",
+      "module_name": "Phần 7: Nhận diện vật thể Faster R-CNN & Detectron2",
       "english_title": "Faster R-CNN Object Detection & Detectron2 Framework",
       "description": "Kiến trúc Two-stage Detector, ResNet-50-FPN backbone, tinh chỉnh tham số cấu hình SOLVER, benchmark FPS và tuning threshold.",
       "icon": "🎯",
